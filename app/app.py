@@ -8,20 +8,30 @@ import requests
 import os
 
 # -------------------------
-# Load Model
+# Page Config
 # -------------------------
 
+st.set_page_config(page_title="GitHub AI Repository Analyzer", layout="wide")
+
+# -------------------------
+# Paths
+# -------------------------
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 model_path = os.path.join(BASE_DIR, "models", "repo_success_model.pkl")
 scaler_path = os.path.join(BASE_DIR, "models", "scaler.pkl")
+history_file = os.path.join(BASE_DIR, "data", "prediction_history.csv")
+
+# create data folder if not exist
+os.makedirs(os.path.dirname(history_file), exist_ok=True)
+
+# -------------------------
+# Load Model
+# -------------------------
 
 model = joblib.load(model_path)
 scaler = joblib.load(scaler_path)
-
-st.set_page_config(page_title="GitHub AI Repository Analyzer", layout="wide")
-st.set_page_config(page_title="GitHub AI Repository Analyzer", layout="wide")
 
 # -------------------------
 # Sidebar Inputs
@@ -60,7 +70,6 @@ if repo_url:
     try:
 
         repo_name = repo_url.replace("https://github.com/", "")
-
         api_url = f"https://api.github.com/repos/{repo_name}"
 
         response = requests.get(api_url)
@@ -94,13 +103,12 @@ if repo_url:
 tab1, tab2 = st.tabs(["Analyzer", "Model Details"])
 
 # -------------------------
-# Analyzer Tab
+# Analyzer
 # -------------------------
 
 with tab1:
 
     st.title("GitHub AI Repository Analyzer")
-
     st.write("Predict repository success and analyze project health.")
 
     st.divider()
@@ -125,7 +133,7 @@ with tab1:
         st.metric("Success Probability", f"{probability*100:.1f}%")
 
         # -------------------------
-        # Probability Gauge
+        # Gauge
         # -------------------------
 
         fig_gauge = go.Figure(go.Indicator(
@@ -148,7 +156,7 @@ with tab1:
         st.divider()
 
         # -------------------------
-        # Repository Health Scores
+        # Health Scores
         # -------------------------
 
         community_score = watchers + forks + prs
@@ -162,7 +170,7 @@ with tab1:
         col3.metric("Growth Potential", growth_score)
 
         # -------------------------
-        # Health Analytics Chart
+        # Analytics Chart
         # -------------------------
 
         scores = pd.DataFrame({
@@ -205,9 +213,9 @@ with tab1:
         }
 
         df = pd.DataFrame([record])
-        history_file = "../data/prediction_history.csv"
+
         if os.path.exists(history_file):
-              df.to_csv(history_file, mode="a", header=False, index=False)
+            df.to_csv(history_file, mode="a", header=False, index=False)
         else:
             df.to_csv(history_file, index=False)
 
@@ -225,9 +233,9 @@ with tab1:
 
         st.subheader("Prediction History")
 
-        if os.path.exists("prediction_history.csv"):
+        if os.path.exists(history_file):
 
-            history = pd.read_csv("prediction_history.csv")
+            history = pd.read_csv(history_file)
 
             st.dataframe(history)
 
@@ -301,7 +309,7 @@ with tab1:
         st.plotly_chart(fig_exp, use_container_width=True)
 
 # -------------------------
-# Model Details Tab
+# Model Details
 # -------------------------
 
 with tab2:
@@ -315,7 +323,7 @@ Pipeline:
 Raw Data → Log Transformation → Scaling → Logistic Regression
 
 Evaluation Metrics:
-Accuracy ≈ 0.83
+Accuracy ≈ 0.83  
 ROC-AUC ≈ 0.90
 """)
 
