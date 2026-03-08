@@ -12,7 +12,9 @@ Built using **Python, Streamlit, Scikit-Learn, and Plotly**.
 
 ## Live Demo
 
-Coming Soon (Streamlit Cloud Deployment)
+Try the live application:
+
+https://app-ai-repository-analyzer-dkh7qdqcc7vqvbma58wr5s.streamlit.app/
 
 ---
 
