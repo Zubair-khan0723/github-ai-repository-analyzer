@@ -11,9 +11,16 @@ import os
 # Load Model
 # -------------------------
 
-model = joblib.load("../models/repo_success_model.pkl")
-scaler = joblib.load("../models/scaler.pkl")
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+model_path = os.path.join(BASE_DIR, "models", "repo_success_model.pkl")
+scaler_path = os.path.join(BASE_DIR, "models", "scaler.pkl")
+
+model = joblib.load(model_path)
+scaler = joblib.load(scaler_path)
+
+st.set_page_config(page_title="GitHub AI Repository Analyzer", layout="wide")
 st.set_page_config(page_title="GitHub AI Repository Analyzer", layout="wide")
 
 # -------------------------
