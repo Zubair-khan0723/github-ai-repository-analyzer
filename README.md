@@ -3,7 +3,6 @@
 ![Python](https://img.shields.io/badge/Python-3.9-blue)
 ![Streamlit](https://img.shields.io/badge/Streamlit-App-red)
 ![Machine Learning](https://img.shields.io/badge/Machine%20Learning-Project-green)
-![License](https://img.shields.io/badge/License-MIT-yellow)
 
 An AI-powered dashboard that predicts whether a GitHub repository will become successful and analyzes repository health using machine learning and GitHub API data.
 
