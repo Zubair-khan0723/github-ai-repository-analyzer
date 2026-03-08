@@ -130,13 +130,13 @@ streamlit run app.py
 ## Project Structure
 
 ```
-app.py                     # Streamlit application
-repo_success_model.pkl     # Trained ML model
-scaler.pkl                 # Feature scaler
-prediction_history.csv     # Saved predictions
+app/
+models/
+data/
+notebooks/
+screenshots/
 requirements.txt           # Python dependencies
 README.md                  # Project documentation
-screenshots/               # Dashboard screenshots
 ```
 
 ---
