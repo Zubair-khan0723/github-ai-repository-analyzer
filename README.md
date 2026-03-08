@@ -45,6 +45,20 @@ Coming Soon (Streamlit Cloud Deployment)
 
 ---
 
+## Dataset
+
+The dataset used to train the machine learning model is available on Kaggle.
+
+Download the dataset here:
+
+https://www.kaggle.com/datasets/nikhil25803/github-dataset
+
+⚠️ The dataset is not included in this repository due to its large size.
+
+After downloading, place the dataset in your project folder before running the training notebook.
+
+---
+
 ## How It Works
 
 The system analyzes repository metrics such as:
@@ -144,6 +158,3 @@ Evaluation metrics:
 - Advanced GitHub repository analytics
 - Growth prediction using time-series analysis
 - Deployment with Streamlit Cloud
-
-
-
